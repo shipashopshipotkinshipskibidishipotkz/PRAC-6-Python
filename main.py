@@ -36,9 +36,11 @@ async def main():
                 print("❌ Песня не найдена.")
                 continue
 
+            track_info = await search_track(f"{title} {artist}", token)
             lyrics_url = await search_lyrics_url(title, artist)
             print(f"\n🎵 Название: {title}")
             print(f"👤 Исполнитель: {artist}")
+            print(f"🔗 Слушать в Spotify: {track_info['spotify_url'] if track_info else 'Не найдено'}")
             print(f"📜 Ссылка на текст: {lyrics_url or 'Не найден'}")
 
         elif choice == "3" or choice.lower() in {"exit", "выход"}:
